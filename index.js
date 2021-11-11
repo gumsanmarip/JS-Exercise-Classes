@@ -42,8 +42,36 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(edible){
+    if(this.stomach.length < 10){
+      this.stomach.push(edible)
+    }
+  }
+  poop(){
+    this.stomach = [];
+  }
+  toString(){
+    return `${this.name}, ${this.age}`;
+  }
 }
+
+const ashley = new Person('Ashley', 1200);
+console.log('task1', ashley.toString());
+
+ashley.eat('sandwich');
+ashley.eat('bruschetta');
+ashley.eat('toast');
+ashley.eat('nuggets');
+ashley.eat('pasta');
+console.log(ashley.stomach);
+
+ashley.poop();
+console.log(ashley.stomach)
 
 /*
   TASK 2
