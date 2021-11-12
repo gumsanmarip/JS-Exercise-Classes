@@ -164,11 +164,11 @@ class Instructor extends Lambdasian{
     this.favLanguage = attrs.favLanguage;
     this.catchPhrase = attrs.catchPhrase;
   }
-  demo(){
-    return `Today we are learning about ${this.subject}`
+  demo(subject){
+    return `Today we are learning about ${subject}`
   }
-  grade(){
-    return `${this.name} receives a perfect score on ${this.subject}`
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`
   }
 }
 
@@ -189,9 +189,21 @@ console.log('task4', Instructor.demo)
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-   constructor(){
-     this
+class Student extends Lambdasian{
+   constructor(attrs){
+     super(attrs);
+     this.previousBackground = attrs.previousBackground;
+     this.className = attrs.className;
+     this.favSubjects = attrs.favSubjects;
+   }
+   listSubjects(){
+     return `Loving ${this.favSubjects}`;
+   }
+   PRAssignment(subject){
+     return `${this.name} has submitted a PR for ${subject}`;
+   }
+   sprintChallenge(subject){
+     return `${this.name} has begun sprint challenge on ${subject}`;
    }
 }
 
@@ -208,8 +220,18 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-   
+class ProjectManager extends Instructor{
+  constructor(attrs){
+    super(attrs);
+    this.gradClassName = attrs.gradClassName;
+    this.favInstructor = attrs.favInstructor;
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`
+  }
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`
+  } 
 }
 /*
   STRETCH PROBLEM (no tests!)
