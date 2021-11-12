@@ -8,6 +8,8 @@
         + If a plane lands, its `isFlying` property gets set to false.
 */
 
+const { declareModule } = require("@babel/types");
+
 // EXAMPLE SOLUTION CODE:
 class Airplane {
   constructor(name) {
@@ -88,8 +90,35 @@ console.log(ashley.stomach)
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    this.tank = this.tank + gallons;
+  }
+  drive(dist){
+    const drivableMiles = this.tank * this.milesPerGallon;
+  if(dist <= drivableMiles){
+    this.odometer = this.odometer + dist;
+    this.tank = this.tank - (dist / this.milesPerGallon);
+    return this.odometer;
+  }else{
+    this.odometer = this.odometer + drivableMiles;
+    this.tank = 0;
+    return `I ran out of fuel at ${this.odometer} miles`;
+    }
+  }
 }
+  const toyota = new Car('Toyota Supra', 13)
+
+  toyota.fill(10);
+  console.log('task2', toyota.tank)
+
+  toyota.drive(1000);
+  console.log(toyota.drive);
 
 /*
   TASK 3
@@ -104,7 +133,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  
+  constructor(attrs){
+    this.name = attrs.name;
+    this.age = attrs.age;
+    this.location = attrs.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}.`;
+  }
 }
 
 /*
@@ -121,9 +157,23 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian{
+  constructor(attrs){
+    super(attrs);
+    this.specialty = attrs.specialty;
+    this.favLanguage = attrs.favLanguage;
+    this.catchPhrase = attrs.catchPhrase;
+  }
+  demo(){
+    return `Today we are learning about ${this.subject}`
+  }
+  grade(){
+    return `${this.name} receives a perfect score on ${this.subject}`
+  }
 }
+
+console.log('task4', Instructor.demo)
+
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -140,7 +190,9 @@ class Instructor {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 class Student {
-   
+   constructor(){
+     this
+   }
 }
 
 /*
